@@ -12,9 +12,8 @@ public class MoneyTransfer {
     private SelenideElement transferPage = $(withText("Пополнение карты"));
     private SelenideElement transferAmount = $("[data-test-id=amount] input");
     private SelenideElement transferFrom = $("[data-test-id=from] input");
-    private SelenideElement transferTo = $("[data-test-id=to] input");
     private SelenideElement transferButton = $(byText("Пополнить"));
-    private SelenideElement cancelButton = $(byText("Отмена"));
+    private SelenideElement errorMessage = $(withText("Ошибка"));
 
     public void moneyTransferVisible() {
         transferPage.shouldBe(Condition.visible);
@@ -32,9 +31,9 @@ public class MoneyTransfer {
         transferButton.click();
     }
 
-    public DashboardPage CancelTransfer() {
-        cancelButton.click();
-        return new DashboardPage();
+    public void errorTransfer() {
+        errorMessage.shouldBe(Condition.visible);
     }
+
 }
 
